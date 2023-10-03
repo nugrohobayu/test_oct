@@ -10,6 +10,7 @@ class UserProfileViewModel extends ChangeNotifier {
   List<ResponseUserProfile> listUser = [];
   String urlPhoto = "";
   String name = "";
+  String username = "";
   String email = "";
   String address = "";
   String noTelp = "";
@@ -24,6 +25,7 @@ class UserProfileViewModel extends ChangeNotifier {
       final city = response.first.address.city;
       listUser = response;
       name = response.first.name;
+      username = response.first.username;
       email = response.first.email;
       company = response.first.company.name;
       noTelp = response.first.phone;

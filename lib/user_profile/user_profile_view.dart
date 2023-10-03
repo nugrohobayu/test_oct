@@ -16,96 +16,44 @@ class UserProfile extends StatelessWidget {
           return Consumer<UserProfileViewModel>(
               builder: (context, provider, child) {
             return Scaffold(
-              appBar: AppBar(
-                title: const Text("User Profile"),
-                centerTitle: true,
-                automaticallyImplyLeading: false,
-              ),
+              backgroundColor: const Color.fromRGBO(21, 76, 121, 0.4),
               body: SingleChildScrollView(
                 child: Padding(
                   padding: const EdgeInsets.symmetric(
-                      horizontal: 16.0, vertical: 16),
+                    horizontal: 16.0,
+                    vertical: 24,
+                  ),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       SizedBox(
-                        width: queryData.size.width * 0.9,
-                        height: queryData.size.height * 0.24,
-                        child: Card(
-                          elevation: 2,
-                          child: Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              children: [
-                                Image.network(
-                                    "https://randomuser.me/api/portraits/men/75.jpg"),
-                                SizedBox(
-                                  width: queryData.size.width * 0.05,
-                                ),
-                                Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    SizedBox(
-                                      width: queryData.size.width * 0.18,
-                                      child: const Text(
-                                        "Name",
-                                        style: TextStyle(
-                                            fontWeight: FontWeight.bold),
-                                      ),
-                                    ),
-                                    SizedBox(
-                                      width: queryData.size.width * 0.35,
-                                      child: Text(
-                                        provider.name,
-                                        style: const TextStyle(
-                                            color: Colors.black87),
-                                      ),
-                                    ),
-                                    SizedBox(
-                                      height: queryData.size.height * 0.008,
-                                    ),
-                                    SizedBox(
-                                      width: queryData.size.width * 0.18,
-                                      child: const Text(
-                                        "Company",
-                                        style: TextStyle(
-                                            fontWeight: FontWeight.bold),
-                                      ),
-                                    ),
-                                    SizedBox(
-                                      width: queryData.size.width * 0.35,
-                                      child: Text(
-                                        provider.company,
-                                        style: TextStyle(color: Colors.black87),
-                                      ),
-                                    ),
-                                    SizedBox(
-                                      height: queryData.size.height * 0.008,
-                                    ),
-                                    SizedBox(
-                                      width: queryData.size.width * 0.18,
-                                      child: const Text(
-                                        "Address",
-                                        style: TextStyle(
-                                            fontWeight: FontWeight.bold),
-                                      ),
-                                    ),
-                                    SizedBox(
-                                      width: queryData.size.width * 0.35,
-                                      child: Text(
-                                        provider.address,
-                                        style: const TextStyle(
-                                            color: Colors.black87),
-                                      ),
-                                    ),
-                                  ],
-                                )
-                              ],
+                        width: queryData.size.width * 0.4,
+                        height: queryData.size.height * 0.22,
+                        child: const CircleAvatar(
+                          backgroundImage: NetworkImage(
+                              "https://randomuser.me/api/portraits/men/75.jpg"),
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Column(
+                          children: [
+                            Text(
+                              provider.name,
+                              style: const TextStyle(
+                                fontWeight: FontWeight.bold,
+                                color: Colors.white,
+                              ),
                             ),
-                          ),
+                            Text(
+                              provider.company,
+                              style: const TextStyle(
+                                fontWeight: FontWeight.normal,
+                                color: Colors.white,
+                              ),
+                            ),
+                          ],
                         ),
                       ),
                       SizedBox(
@@ -115,6 +63,9 @@ class UserProfile extends StatelessWidget {
                         width: queryData.size.width * 0.9,
                         height: queryData.size.height * 0.35,
                         child: Card(
+                          color: const Color(0xff124d6a),
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(16)),
                           child: Padding(
                             padding: const EdgeInsets.all(8.0),
                             child: Column(
@@ -122,25 +73,36 @@ class UserProfile extends StatelessWidget {
                               children: [
                                 const Text(
                                   "About Me",
-                                  style: TextStyle(fontWeight: FontWeight.bold),
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.white,
+                                  ),
                                 ),
                                 SizedBox(
                                   height: queryData.size.height * 0.03,
                                 ),
                                 const Text(
-                                    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.\n\nUt enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."),
+                                  "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.\n\nUt enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                  ),
+                                ),
                               ],
                             ),
                           ),
                         ),
                       ),
                       SizedBox(
-                        height: queryData.size.height * 0.02,
+                        height: queryData.size.height * 0.01,
                       ),
                       SizedBox(
                         width: queryData.size.width * 0.9,
                         height: queryData.size.height * 0.2,
                         child: Card(
+                          color: const Color(0xff124d6a),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(16),
+                          ),
                           child: Padding(
                             padding: const EdgeInsets.all(8.0),
                             child: Column(
@@ -148,18 +110,28 @@ class UserProfile extends StatelessWidget {
                               children: [
                                 const Text(
                                   "Contact Me",
-                                  style: TextStyle(fontWeight: FontWeight.bold),
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.white,
+                                  ),
                                 ),
                                 SizedBox(
                                   height: queryData.size.height * 0.03,
                                 ),
                                 Row(
                                   children: [
-                                    const Icon(Icons.phone),
+                                    const Icon(
+                                      Icons.phone,
+                                      color: Colors.white,
+                                    ),
                                     SizedBox(
                                       width: queryData.size.width * 0.05,
                                     ),
-                                    Text(provider.noTelp),
+                                    Text(
+                                      provider.noTelp,
+                                      style:
+                                          const TextStyle(color: Colors.white),
+                                    ),
                                   ],
                                 ),
                                 SizedBox(
@@ -167,11 +139,18 @@ class UserProfile extends StatelessWidget {
                                 ),
                                 Row(
                                   children: [
-                                    const Icon(Icons.email),
+                                    const Icon(
+                                      Icons.email,
+                                      color: Colors.white,
+                                    ),
                                     SizedBox(
                                       width: queryData.size.width * 0.05,
                                     ),
-                                    Text(provider.email),
+                                    Text(
+                                      provider.email,
+                                      style:
+                                          const TextStyle(color: Colors.white),
+                                    ),
                                   ],
                                 ),
                               ],
@@ -184,8 +163,13 @@ class UserProfile extends StatelessWidget {
                       ),
                       SizedBox(
                         width: queryData.size.width * 0.88,
-                        height: queryData.size.height * 0.05,
+                        height: queryData.size.height * 0.075,
                         child: ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                              backgroundColor: const Color(0xffffa85b),
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(12),
+                              )),
                           onPressed: () {
                             Navigator.push(
                                 context,
@@ -193,7 +177,11 @@ class UserProfile extends StatelessWidget {
                                   builder: (context) => const LoginView(),
                                 ));
                           },
-                          child: const Text("Log Out"),
+                          child: const Text(
+                            "Hire Me",
+                            style: TextStyle(
+                                fontWeight: FontWeight.w600, fontSize: 16),
+                          ),
                         ),
                       )
                     ],
