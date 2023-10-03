@@ -61,6 +61,17 @@ class LoginView extends StatelessWidget {
                           ),
                           TextFormComponent(
                             name: "Password",
+                            obscureText: !provider.showPassword,
+                            suffixIcon: GestureDetector(
+                              onTap: () {
+                                provider.toggleVisibility();
+                              },
+                              child: Icon(
+                                provider.showPassword
+                                    ? Icons.visibility
+                                    : Icons.visibility_off,
+                              ),
+                            ),
                             validator: (value) {
                               if (value!.isEmpty) {
                                 return "Password tidak boleh kosong";
