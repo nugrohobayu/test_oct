@@ -11,6 +11,35 @@ class LoginView extends StatelessWidget {
   Widget build(BuildContext context) {
     MediaQueryData queryData = MediaQuery.of(context);
 
+    dialogErrorLogin() {
+      return showDialog(
+        context: context,
+        builder: (context) {
+          return AlertDialog(
+            shape: const RoundedRectangleBorder(
+              borderRadius: BorderRadius.all(
+                Radius.circular(20),
+              ),
+            ),
+            content: SizedBox(
+              width: queryData.size.width * 0.01,
+              height: queryData.size.height * 0.13,
+              child: Padding(
+                padding: const EdgeInsets.only(
+                  top: 16,
+                ),
+                child: Column(
+                  children: [
+                    const Text("Emailatau password salah"),
+                  ],
+                ),
+              ),
+            ),
+          );
+        },
+      );
+    }
+
     return ChangeNotifierProvider(
         create: (context) => LoginViewModel(),
         builder: (context, child) {
@@ -30,14 +59,16 @@ class LoginView extends StatelessWidget {
                         const Text("Welcome,\nLog in now to continue"),
                         Image.asset("assets/images/login-icon.png"),
                         TextFormComponent(
-                          name: "Email",
+                          name: "Username",
+                          ctrl: provider.email,
                           keyboardType: TextInputType.emailAddress,
                           validator: (value) {
                             if (value!.isEmpty) {
-                              return "Email tidak boleh kosong";
-                            } else if (!provider.emailValidation(value)) {
-                              return "Format email salah";
+                              return "Username tidak boleh kosong";
                             }
+                            // else if (!provider.emailValidation(value)) {
+                            //   return "Format email salah";
+                            // }
                             return null;
                           },
                         ),
@@ -46,6 +77,7 @@ class LoginView extends StatelessWidget {
                         ),
                         TextFormComponent(
                           name: "Password",
+                          ctrl: provider.password,
                           obscureText: !provider.showPassword,
                           suffixIcon: GestureDetector(
                             onTap: () {
@@ -98,12 +130,18 @@ class LoginView extends StatelessWidget {
                                   )),
                               onPressed: () {
                                 if (provider.formKey.currentState!.validate()) {
-                                  Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                        builder: (context) =>
-                                            const UserProfile(),
-                                      ));
+                                  provider.loginPassword().then((value) {
+                                    if (value == true) {
+                                      Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                            builder: (context) =>
+                                                const UserProfile(),
+                                          ));
+                                    } else {
+                                      dialogErrorLogin();
+                                    }
+                                  });
                                 }
                               },
                               child: const Text(
